@@ -1,0 +1,8 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "zhrc": "c",
+        "curses.h": "c",
+        "ncurses.h": "c"
+    }
+}
