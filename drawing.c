@@ -3,8 +3,10 @@
 #include <time.h>
 #include <stdbool.h>
 #include "global.h"
+
 void waiting_tab(int rows, int cols)
 {
+	/*Блок вывода вейтинга*/
 	for (int y=0; y<= rows-1; y++)
 	{
 		for (int x=0; x<= cols-1; x++)
@@ -22,7 +24,6 @@ void waiting_tab(int rows, int cols)
  \\_____/ #\\_____|#|_|#   \\__)#|_|#|_| |_|# \\___ |#\n\
     ##       ##   ##       ##   ##       ##(_____|##\n"
 	};
-	/*Блок вывода вейтинга*/
 	int counterx = 0, countery = 0;
 	while (countery<7)
 	{
