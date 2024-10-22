@@ -1,5 +1,5 @@
-mp : main.o
-	gcc main.o  global.c drawing.c game_mechanics.c space_creation.c console_work.c -lncurses -o mp
+mp : main.o global.o drawing.o game_mechanics.o space_creation.o console_work.o
+	gcc main.o  global.o drawing.o game_mechanics.o space_creation.o console_work.o -lncurses -o mp
 
 const.o : main.c
 	gcc -c main.c -o main.o

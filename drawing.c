@@ -27,8 +27,9 @@ void waiting_tab(int rows, int cols)
 	int counterx = 0, countery = 0;
 	while (countery<7)
 	{
-		mvprintw(countery+((rows/7)*3), ((cols/11)*3), "%c", waiting[counterx]);
+		mvprintw(countery+((rows/10)*3), ((cols/12)*3), "%c", waiting[counterx]);
 		counterx++;
+
 		while (waiting[counterx] !='\n')
 		{
 			printw("%c", waiting[counterx]);
@@ -40,12 +41,13 @@ void waiting_tab(int rows, int cols)
 			countery++;
 		}
 	}
-	mvprintw(countery+((rows/7)*3) + 2, ((cols/11)*3)+12,"Press something to continue");
+	mvprintw(countery+((rows/10)*3) + 2, ((cols/12)*3)+12,"Press something to continue");
 }
 
 void drawing(int rows, int cols, char (*map)[cols])
 /*Отрисовка всех текстурок*/
 {
+
    	for (int y =  0;y <=(rows-1); y++)
     {
         for (int x =  0;x <=(cols-1); x++)
