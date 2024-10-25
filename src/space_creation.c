@@ -25,7 +25,7 @@ void respawn(int rows, int cols, char (*map)[cols])
 		}
 		t_placed = 1;
 	}
-
+	/* Механика спвана перса */
 	if (!p_placed)
 	{
 		do

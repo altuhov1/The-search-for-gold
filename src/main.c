@@ -8,7 +8,7 @@ void waiting_tab(int rows, int cols);
 	/*Drawing.c; Блок вывода вейтинга*/
 
 void battle(int rows, int cols, char (*map)[cols], int dir_y, int dir_x);
-	/*Game_mechanics.c;Маханика битвы с мобом */
+	/*Game_mechanics.c; Маханика битвы с мобом */
 
 void respawn(int rows, int cols, char (*map)[cols]);
 	/*Space_creation.c;  Механика спвана мобов */
@@ -39,17 +39,11 @@ void dungeon(int rows, int cols, char (*map)[cols])
 		location_creation(rows, cols, map); //создание локации
 		room_creation(rows, cols, map); // создание комнат
 		stairs(rows, cols, map); // создание телепорта
+		respawn(rows, cols, map); //спавн перса и мобов
 	}
 
-	respawn(rows, cols, map); //спавн перса и мобов
 
-	if (c != 0)
-	{
-		check_teleport = Reading_a_move(rows, cols, map); // чтение хода
-	}
-	if (check_teleport ==0)
-		drawing(rows, cols, map); // отрисовка 
-	
+	Reading_a_move(rows, cols, map); // чтение хода
 
     mvaddch(py, px, '@');
 
