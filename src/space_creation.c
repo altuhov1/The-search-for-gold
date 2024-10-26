@@ -95,7 +95,9 @@ void room_creation(int rows, int cols, char (*map)[cols])
 			{
 				if (map[y][x] != 'X')
 				{
+
 				map[y][x] = ' ';
+				
 				}
 					
 			}
