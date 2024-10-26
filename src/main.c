@@ -3,7 +3,7 @@
 #include <time.h>
 #include <stdbool.h>
 #include "global.h"
-
+// \\ddfdfsfsffd
 void waiting_tab(int rows, int cols);
 	/*Drawing.c; Блок вывода вейтинга*/
 
