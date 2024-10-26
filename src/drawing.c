@@ -1,7 +1,5 @@
 #include <ncurses.h>
 #include <stdlib.h>
-#include <time.h>
-#include <stdbool.h>
 #include "global.h"
 
 void waiting_tab(int rows, int cols)
@@ -70,5 +68,11 @@ void drawing(int rows, int cols, char (*map)[cols])
 				mvaddch(y, x, '#');
 
         }   
-    }	
+    }
+	mvaddch(py, px, '@');
+}
+
+void indicators(int rows, int cols, char (*map)[cols])
+{
+	mvprintw(rows-1, 0,"Gold: %d ", p_gold); 
 }

@@ -1,13 +1,12 @@
 #include <ncurses.h>
-#include <stdlib.h>
-#include <time.h>
 #include <stdbool.h>
+#include <time.h>
 #include "global.h"
 
 void waiting_tab(int rows, int cols);
 void battle(int rows, int cols, char (*map)[cols], int dir_y, int dir_x);
 void drawing(int rows, int cols, char (*map)[cols]);
-void Reading_a_move(int rows, int cols, char (*map)[cols])
+void move_person(int rows, int cols, char (*map)[cols])
 /*Чтение ходов*/
 {
 	int dir_y = py, dir_x = px;
@@ -46,4 +45,12 @@ void Reading_a_move(int rows, int cols, char (*map)[cols])
 	}
 	if (!check_teleport) drawing(rows, cols, map);
 
+}
+
+int delta_time(void)
+{
+    time_t mytime_1 = time(NULL);
+    getchar();
+    time_t mytime_2 = time(NULL);
+    return mytime_2 - mytime_1;
 }

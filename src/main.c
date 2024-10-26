@@ -25,9 +25,11 @@ void stairs(int rows, int cols, char (*map)[cols]);
 void drawing(int rows, int cols, char (*map)[cols]);
 /*Drawing.c; Отрисовка всех текстурок*/
 
-bool Reading_a_move(int rows, int cols, char (*map)[cols]);
+void move_person(int rows, int cols, char (*map)[cols]);
 /*Console_work.c; Чтение ходов*/
 
+void indicators(int rows, int cols, char (*map)[cols]);
+/*Drawing.c; Отрисовка всех временных индикаторов*/
 
 void dungeon(int rows, int cols, char (*map)[cols])
 /*Создаем данжен*/
@@ -43,11 +45,9 @@ void dungeon(int rows, int cols, char (*map)[cols])
 	}
 
 
-	Reading_a_move(rows, cols, map); // чтение хода
+	move_person(rows, cols, map); // чтение хода
 
-    mvaddch(py, px, '@');
-
-	mvprintw(rows-1, 0,"Gold: %d ", p_gold); // Пираты платят золотом!!!
+	indicators(rows, cols, map);
 }
 
 
