@@ -52,6 +52,7 @@ void location_creation (int rows, int cols, char (*map)[cols])
 		}   
 	}
 }
+
 void room_creation(int rows, int cols, char (*map)[cols])
 	/*Создаем комнаты*/
 {
