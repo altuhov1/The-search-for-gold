@@ -54,6 +54,7 @@ void dungeon(int rows, int cols, char (*map)[cols])
 
 int main(void)
 {
+	time_table[0].start_time = time(NULL);
     int cols, rows;
     initscr();
 

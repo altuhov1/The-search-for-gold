@@ -12,8 +12,10 @@ void battle(int rows, int cols, char (*map)[cols], int dir_y, int dir_x)
 		{
 			if (monster[m].hp<= 0)
 			{
+				time_table[0].temp_time = time(NULL);
 				map[dir_y][dir_x] = ' ';
-				p_gold+= rand()% 10 + 1;
+				temp_gold = rand()% 10 + 1;
+				p_gold+= temp_gold;
 			}
 			else
 				monster[m].hp -=1;

@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include "global.h"
 
+
+int delta_time(void);
+/*console_work.c*/
 void waiting_tab(int rows, int cols)
 {
 	/*Блок вывода вейтинга*/
@@ -73,6 +76,11 @@ void drawing(int rows, int cols, char (*map)[cols])
 }
 
 void indicators(int rows, int cols, char (*map)[cols])
+/*Ссылается на main.c. Занимается отрисовкой разных знаяений (по типу золота и тд)*/
 {
+	if (delta_time() == 1)
+	{
+		mvprintw(rows-1, 0,"Gold: %d, you got %d gold for killing a goblin.", p_gold, temp_gold); 
+	}
 	mvprintw(rows-1, 0,"Gold: %d ", p_gold); 
 }

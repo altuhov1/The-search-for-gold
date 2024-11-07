@@ -4,8 +4,11 @@
 #include "global.h"
 
 void waiting_tab(int rows, int cols);
+/*drawing.c*/
 void battle(int rows, int cols, char (*map)[cols], int dir_y, int dir_x);
+/*game_mechanics.c*/
 void drawing(int rows, int cols, char (*map)[cols]);
+/*drawing.c*/
 void move_person(int rows, int cols, char (*map)[cols])
 /*Чтение ходов*/
 {
@@ -48,9 +51,15 @@ void move_person(int rows, int cols, char (*map)[cols])
 }
 
 int delta_time(void)
+/*Проверка на то, сколько будет весеть по времени сообщение */
+/*Пока в завсисмости с функцией индикаторы в drawing.c*/
 {
-    time_t mytime_1 = time(NULL);
-    getchar();
+    time_t mytime_1 = time_table[0].temp_time;
     time_t mytime_2 = time(NULL);
-    return mytime_2 - mytime_1;
+    int res = (int)mytime_2 - (int)mytime_1;
+	if (res < 3)
+	{
+		return 1;
+	}
+    return 0;
 }
