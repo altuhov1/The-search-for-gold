@@ -3,7 +3,7 @@
 #include <time.h>
 #include <stdbool.h>
 #include "global.h"
-// \\ddfdfsfsffd
+// 
 void waiting_tab(int rows, int cols);
 	/*Drawing.c; Блок вывода вейтинга*/
 
@@ -35,7 +35,7 @@ void dungeon(int rows, int cols, char (*map)[cols])
 /*Создаем данжен*/
 { 
 	bool check_teleport =0;
-	srand(time(NULL));
+	// srand(time(NULL)); <--------------rand
 	if (r_placed == 0)
 	{
 		location_creation(rows, cols, map); //создание локации
@@ -57,6 +57,7 @@ int main(void)
 	time_table[0].start_time = time(NULL);
     int cols, rows;
     initscr();
+	start_color();
 
     noecho(); // не отображает сиволы, которые мы вводим
     curs_set(0); // отсутствие мигающей хрени для ввода

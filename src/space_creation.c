@@ -4,7 +4,6 @@
 #include <stdbool.h>
 #include "global.h"
 
-
 void respawn(int rows, int cols, char (*map)[cols])
 {	/* Механика спвана мобов */
 	if (!t_placed)
@@ -14,8 +13,8 @@ void respawn(int rows, int cols, char (*map)[cols])
 		{
 			do
 			{
-				my = rand() % rows;
-				mx = rand() % cols;
+				my = rand() % (rows-3);
+				mx = rand() % (cols-1);
 			} 
 			while (map[my][mx] != ' ');
 			monster[m].y = my;
@@ -33,21 +32,43 @@ void respawn(int rows, int cols, char (*map)[cols])
 			py = rand() % rows;
 			px = rand() % cols;
 		} 
-		while (map[py][px] == '#'|| map[py][px] == 'X');
+		while (map[py][px] == '#'|| map[py][px] == 'X'||map[py][px] == '.');
 		p_placed = 1;
 	}
 }
 void location_creation (int rows, int cols, char (*map)[cols])
 {
 	/*заполняем локацию материей, создеает жесткие стены*/
+	/*Тут же и создается декор, который внутри стен*/
 	for (int y =  0;y <=(rows-1); y++)
 	{				
 		for (int x =  0;x <=(cols-1); x++)
 		{
-			if (y ==0 || y == rows -2 || x == 0 || x == cols -1 || y == rows -1 )
+			if (y ==0 || x == 0 || x == cols -1 ||( y >= rows -3 && y <= rows ) )
 				map[y][x] = 'X';      // стены
 			else
-				map[y][x] = '#';       // окружение, на которое нельзя заходить
+			{
+				// srand(time(NULL));
+				if (rand() % 10 == 0) // булыга
+				{
+					map[y][x] ='.';
+				}
+				else if ((rand() % 140 == 0)&& (x !=0) && (map[y][x-1] == '#')) // руда
+				{
+					map[y][x] ='e';
+					map[y][x-1] ='e';
+				}
+				else if ((rand() % 130 == 0)&& (x !=0) && (map[y][x-1] == '#')) // руда
+				{
+					map[y][x] ='g';
+					map[y][x-1] ='g';
+				}
+				else
+				{
+					map[y][x] = '#';       // окружение, на которое нельзя заходить
+				}
+				// map[y][x] = '#'; 
+			}
 
 		}   
 	}
@@ -58,7 +79,7 @@ void room_creation(int rows, int cols, char (*map)[cols])
 {
 	int ry, rx;
 	int r_size_y, r_size_x;
-	int room_num = rand() % 5 + 5;  // скок будет комнат rand() % 5 + 5
+	int room_num = rand() % 5 + 6;  // скок будет комнат rand() % 5 + 5
 	int old_r_centr_y,old_r_centr_x;
 	int r_centr_y, r_centr_x;
 	bool collizion = 0;
@@ -106,7 +127,7 @@ void room_creation(int rows, int cols, char (*map)[cols])
 		r_placed++;
 
 
-		if (r_placed > 1)
+		if (r_placed > 1) //коридоры 
 		{
 			old_r_centr_y = r_centr_y;
 			old_r_centr_x = r_centr_x;
