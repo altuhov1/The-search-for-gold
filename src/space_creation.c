@@ -32,7 +32,7 @@ void respawn(int rows, int cols, char (*map)[cols])
 			py = rand() % rows;
 			px = rand() % cols;
 		} 
-		while (map[py][px] == '#'|| map[py][px] == 'X'||map[py][px] == '.');
+		while (map[py][px] != ' ');
 		p_placed = 1;
 	}
 }
@@ -48,7 +48,6 @@ void location_creation (int rows, int cols, char (*map)[cols])
 				map[y][x] = 'X';      // стены
 			else
 			{
-				// srand(time(NULL));
 				if (rand() % 10 == 0) // булыга
 				{
 					map[y][x] ='.';
@@ -66,8 +65,7 @@ void location_creation (int rows, int cols, char (*map)[cols])
 				else
 				{
 					map[y][x] = '#';       // окружение, на которое нельзя заходить
-				}
-				// map[y][x] = '#'; 
+				} 
 			}
 
 		}   
@@ -79,7 +77,7 @@ void room_creation(int rows, int cols, char (*map)[cols])
 {
 	int ry, rx;
 	int r_size_y, r_size_x;
-	int room_num = rand() % 5 + 6;  // скок будет комнат rand() % 5 + 5
+	int room_num = rand() % ((rows * cols) / 600) + 6;  // скок будет комнат rand() % 5 + 5
 	int old_r_centr_y,old_r_centr_x;
 	int r_centr_y, r_centr_x;
 	bool collizion = 0;
@@ -92,8 +90,9 @@ void room_creation(int rows, int cols, char (*map)[cols])
 			{
 				ry = rand() % (rows - 3);
 				rx = rand() % (cols - 3);
+
 				r_size_y = rand() % 4 + 3;  // размеры комнат
-				r_size_x = rand() % 13 + 7;
+				r_size_x = rand() % 13 + 8;
 
 			} 
 			while ((ry + r_size_y > rows - 2) || (rx + r_size_x > cols - 1));

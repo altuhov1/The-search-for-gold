@@ -6,9 +6,9 @@
 
 int delta_time(void);
 /*console_work.c*/
-void waiting_tab(int rows, int cols)
+
+void cleaning(int rows, int cols)
 {
-	/*Блок вывода вейтинга*/
 	for (int y=0; y<= rows-1; y++)
 	{
 		for (int x=0; x<= cols-1; x++)
@@ -16,6 +16,12 @@ void waiting_tab(int rows, int cols)
 			mvprintw(y, x, " ");
 		}
 	}
+}
+
+void waiting_tab(int rows, int cols)
+{
+	/*Блок вывода вейтинга*/
+	cleaning(rows, cols);
 	char waiting[]=
 	{
 		"    _  _ #       # _ #       # _ #       #       #\n\
@@ -29,7 +35,7 @@ void waiting_tab(int rows, int cols)
 	int counterx = 0, countery = 0;
 	while (countery<7)
 	{
-		mvprintw(countery+((rows/10)*3), ((cols/12)*3), "%c", waiting[counterx]);
+		mvprintw(countery+((rows/9)*3), ((cols/9)*3), "%c", waiting[counterx]);
 		counterx++;
 
 		while (waiting[counterx] !='\n')
@@ -53,73 +59,96 @@ void drawing(int rows, int cols, char (*map)[cols])
 	init_pair(2, 234, 234); // стены бедрок - X
 	init_pair(3, 173, 0); // телепорт - [^]
 	init_pair(4, 152, 0); // иконка игрока - @
-	init_pair(5, 30, 244); // камни - .
+	init_pair(5, 237, 244); // камни - .
 	init_pair(6, 47, 242); // руда - e (эмиральды)
 	init_pair(7, 178, 242); // руда - g
 	init_pair(8, 34, 0); // руда - G (гоблины)
+	init_pair(9, 0, 236); // темнота проходы 
+	init_pair(10, 0, 238); // темнота стены
+
+	cleaning(rows, cols);
+
    	for (int y =  0;y <=(rows-1); y++)
     {
         for (int x =  0;x <=(cols-1); x++)
         {
+			if ((px - x)*(px - x)/4 +(py - y)*(py - y) < 49) //<-------------------радиус
+			{
+				if (y > rows -3) //отступ !!!! <-------------------
+					mvaddch(y, x, ' ');
+				else if (map[y][x] == '^')
+				{
+					attron(COLOR_PAIR(3));
+					mvaddch(y, x, '^');
+					attroff(COLOR_PAIR(3));
+					
+				}
+				else if (map[y][x] == '[')
+				{
+					attron(COLOR_PAIR(3));
+					mvaddch(y, x, '[');
+					attroff(COLOR_PAIR(3));
+				}
+				else if (map[y][x] == '.')
+				{
+					attron(COLOR_PAIR(5));
+					mvaddch(y, x, '.');
+					attroff(COLOR_PAIR(5));
+				}
+				else if (map[y][x] == 'e')
+				{
+					attron(COLOR_PAIR(6));
+					mvaddch(y, x, ':');
+					attroff(COLOR_PAIR(6));
+				}
+				else if (map[y][x] == 'g')
+				{
+					attron(COLOR_PAIR(7));
+					mvaddch(y, x, ':');
+					attroff(COLOR_PAIR(7));
+				}
+				else if (map[y][x] == ']')
+				{
+					attron(COLOR_PAIR(3));
+					mvaddch(y, x, ']');
+					attroff(COLOR_PAIR(3));
+				}
+				else if (map[y][x] == 'G')
+				{
+					attron(COLOR_PAIR(8));
+					mvaddch(y, x, 'G');
+					attroff(COLOR_PAIR(8));
+				}
+				else if (map[y][x] == ' ')
+					mvaddch(y, x, ' ');
+				else
+				{
+					attron(COLOR_PAIR(1));      // #
+					mvaddch(y, x, ' ');
+					attroff(COLOR_PAIR(1));
+				}
+			}
+			
+			else if (((map[y][x] == ' ') || (map[y][x] == 'G')||(map[y][x] == '[') ||(map[y][x] == '^') || (map[y][x] == ']')))
+			{
+				attron(COLOR_PAIR(9));
+				mvaddch(y, x, ' ');
+				attroff(COLOR_PAIR(9));
+			}
+			else
+			{
+				attron(COLOR_PAIR(10));
+				mvaddch(y, x, ' ');
+				attroff(COLOR_PAIR(10));				
+			}
 			if (y > rows -3) //отступ !!!! <-------------------
 				mvaddch(y, x, ' ');
-			else if (map[y][x] == '^')
-			{
-				attron(COLOR_PAIR(3));
-				mvaddch(y, x, '^');
-				attroff(COLOR_PAIR(3));
-				
-			}
-			else if (map[y][x] == '[')
-			{
-				attron(COLOR_PAIR(3));
-				mvaddch(y, x, '[');
-				attroff(COLOR_PAIR(3));
-			}
-			else if (map[y][x] == '.')
-			{
-				attron(COLOR_PAIR(5));
-				mvaddch(y, x, '.');
-				attroff(COLOR_PAIR(5));
-			}
-			else if (map[y][x] == 'e')
-			{
-				attron(COLOR_PAIR(6));
-				mvaddch(y, x, ':');
-				attroff(COLOR_PAIR(6));
-			}
-			else if (map[y][x] == 'g')
-			{
-				attron(COLOR_PAIR(7));
-				mvaddch(y, x, ':');
-				attroff(COLOR_PAIR(7));
-			}
-			else if (map[y][x] == ']')
-			{
-				attron(COLOR_PAIR(3));
-				mvaddch(y, x, ']');
-				attroff(COLOR_PAIR(3));
-			}
-			else if (map[y][x] == 'G')
-			{
-				attron(COLOR_PAIR(8));
-				mvaddch(y, x, 'G');
-				attroff(COLOR_PAIR(8));
-			}
 			else if (map[y][x] == 'X')
 			{
 				attron(COLOR_PAIR(2));
 				mvaddch(y, x, ' ');
 				attroff(COLOR_PAIR(2));
-			}
-			else if (map[y][x] == ' ')
-				mvaddch(y, x, ' ');
-			else
-			{
-				attron(COLOR_PAIR(1));      // #
-				mvaddch(y, x, ' ');
-				attroff(COLOR_PAIR(1));
-			}
+			}	
 
         }   
     }

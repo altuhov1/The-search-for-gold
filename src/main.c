@@ -34,8 +34,7 @@ void indicators(int rows, int cols, char (*map)[cols]);
 void dungeon(int rows, int cols, char (*map)[cols])
 /*Создаем данжен*/
 { 
-	bool check_teleport =0;
-	// srand(time(NULL)); <--------------rand
+	srand(time(NULL)); 
 	if (r_placed == 0)
 	{
 		location_creation(rows, cols, map); //создание локации
