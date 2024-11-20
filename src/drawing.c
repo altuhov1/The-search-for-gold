@@ -72,7 +72,8 @@ void drawing(int rows, int cols, char (*map)[cols])
     {
         for (int x =  0;x <=(cols-1); x++)
         {
-			if ((px - x)*(px - x)/4 +(py - y)*(py - y) < 49) //<-------------------радиус
+			if ((px - x)*(px - x)/5
+			 +(py - y)*(py - y) < 49) //<-------------------радиус
 			{
 				if (y > rows -3) //отступ !!!! <-------------------
 					mvaddch(y, x, ' ');
@@ -128,7 +129,6 @@ void drawing(int rows, int cols, char (*map)[cols])
 					attroff(COLOR_PAIR(1));
 				}
 			}
-			
 			else if (((map[y][x] == ' ') || (map[y][x] == 'G')||(map[y][x] == '[') ||(map[y][x] == '^') || (map[y][x] == ']')))
 			{
 				attron(COLOR_PAIR(9));

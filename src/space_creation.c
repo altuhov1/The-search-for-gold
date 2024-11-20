@@ -52,6 +52,7 @@ void location_creation (int rows, int cols, char (*map)[cols])
 				{
 					map[y][x] ='.';
 				}
+				
 				else if ((rand() % 140 == 0)&& (x !=0) && (map[y][x-1] == '#')) // руда
 				{
 					map[y][x] ='e';
@@ -111,7 +112,7 @@ void room_creation(int rows, int cols, char (*map)[cols])
 		while(collizion == 1);
 		for (int y =  ry ;y <= ry + r_size_y; y++)
 		{
-			for (int x =  rx;x <=rx + r_size_x; x++)  //Отрисовка пустот
+			for (int x =  rx;x <=rx + r_size_x; x++)  //рисовка пустот
 			{
 				if (map[y][x] != 'X')
 				{
