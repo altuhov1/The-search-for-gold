@@ -35,7 +35,7 @@ void waiting_tab(int rows, int cols)
 	int counterx = 0, countery = 0;
 	while (countery<7)
 	{
-		mvprintw(countery+((rows/9)*3), ((cols/9)*3), "%c", waiting[counterx]);
+		mvprintw(countery+((rows/9)*3), ((cols/11)*3), "%c", waiting[counterx]);
 		counterx++;
 
 		while (waiting[counterx] !='\n')
@@ -49,13 +49,12 @@ void waiting_tab(int rows, int cols)
 			countery++;
 		}
 	}
-	mvprintw(countery+((rows/10)*3) + 2, ((cols/12)*3)+12,"Press something to continue");
+	mvprintw(countery+((rows/9)*3) + 2, ((cols/9)*3) + 12,"Press something to continue...");
 }
 
 void drawing(int rows, int cols, char (*map)[cols])
 /*Отрисовка всех текстурок*/
 {
-	init_pair(1, 244, 244); // стены - #
 	init_pair(2, 234, 234); // стены бедрок - X
 	init_pair(3, 173, 0); // телепорт - [^]
 	init_pair(4, 152, 0); // иконка игрока - @

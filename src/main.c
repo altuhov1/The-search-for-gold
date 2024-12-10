@@ -30,6 +30,8 @@ void move_person(int rows, int cols, char (*map)[cols]);
 
 void indicators(int rows, int cols, char (*map)[cols]);
 /*Drawing.c; Отрисовка всех временных индикаторов*/
+void mode_select(int rows, int cols);
+/*Mode.c; работа с выбором режима для игры*/
 
 void dungeon(int rows, int cols, char (*map)[cols])
 /*Создаем данжен*/
@@ -63,9 +65,6 @@ int main(void)
     keypad(stdscr, 1); // можно воодить фки и стрелки
     getmaxyx(stdscr, rows, cols);
     char map[rows][cols]; 
-
-
-
     do
     {
         dungeon(rows, cols, map); 
