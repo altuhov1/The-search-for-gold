@@ -55,6 +55,7 @@ void waiting_tab(int rows, int cols)
 void drawing(int rows, int cols, char (*map)[cols])
 /*Отрисовка всех текстурок*/
 {
+	init_pair(1, 244, 244); // стены #
 	init_pair(2, 234, 234); // стены бедрок - X
 	init_pair(3, 173, 0); // телепорт - [^]
 	init_pair(4, 152, 0); // иконка игрока - @
