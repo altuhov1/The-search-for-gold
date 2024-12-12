@@ -65,6 +65,8 @@ int main(void)
     keypad(stdscr, 1); // можно воодить фки и стрелки
     getmaxyx(stdscr, rows, cols);
     char map[rows][cols]; 
+
+	mode_select(rows, cols);
     do
     {
         dungeon(rows, cols, map); 

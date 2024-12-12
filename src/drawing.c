@@ -4,6 +4,7 @@
 #include "global.h"
 
 
+
 int delta_time(void);
 /*console_work.c*/
 
@@ -165,4 +166,63 @@ void indicators(int rows, int cols, char (*map)[cols])
 		mvprintw(rows-1, 0,"Gold: %d, you got %d gold for killing a goblin.", p_gold, temp_gold); 
 	}
 	mvprintw(rows-1, 0,"Gold: %d ", p_gold); 
+}
+
+void start_menu(int rows, int cols)
+{
+	init_pair(1, 196, 238); // буквы хело плеер
+	init_pair(2, 52, 52); // обрамление, цвет
+	init_pair(3, 238, 238); // фон база
+    char hello_player[] =
+    {
+    "  . .       . .       .         .         . .          . .       .         . .       .   .    . .       . .\n\
+.+'| |`+. .+'|=|`+. .+'|      .+'|      .+'|=|`+.    .+'|=|`+. .+'|      .+'|=|`+. .+'|.+'| .+'|=|`+. .+'|=|`+.\n\
+|  | |  | |  | `+.| |  |      |  |      |  | |  |    |  | |  | |  |      |  | |  | |  ||  | |  | `+.| |  | |  | \n\
+|  |=|  | |  |=|`.  |  |      |  |      |  | |  |    |  |=`++' |  |      |  |=|  | `+.`'.+' |  |=|`.  |  |'. '. \n\
+|  | |  | |  | `.|  |  |      |  |      |  | |  |    |  |      |  |      |  | |  |   |  |   |  | `.|  |  | |  | \n\
+|  | |  | |  |    . |  |    . |  |    . |  | |  |    |  |      |  |    . |  | |  |   |  |   |  |    . |  | |  | \n\
+|  | |  | |  | .+'| |  | .+'| |  | .+'| |  | |  |    |  |      |  | .+'| |  | |  |   |  |   |  | .+'| |  | |  | \n\
+`+.| |..| `+.|=|.+' `+.|=|.+' `+.|=|.+' `+.|=|.+'    `+.|      `+.|=|.+' `+.| |..|   |.+'   `+.|=|.+' `+.| |.+' \n"
+    };
+	for ( int i = 0;i< rows; i++)
+	{
+		for (int j = 0;j < cols; j++)
+		{
+			if ((i == 0) || (j == 0) ||( i == rows - 1) || (j == cols - 1))
+			{
+				attron(COLOR_PAIR(2));
+				mvaddch(i, j, ' ');
+				attroff(COLOR_PAIR(2));
+			}
+			else
+			{
+				attron(COLOR_PAIR(3));
+				mvaddch(i, j, ' ');
+				attroff(COLOR_PAIR(3));
+			}
+		}
+	}
+
+    int counterx = 0, countery = 0;
+	attron(COLOR_PAIR(1));
+	while (countery<8)
+	{
+		mvprintw(countery+ 1, 5, "%c", hello_player[counterx]);
+		counterx++;
+
+		while (hello_player[counterx] !='\n')
+		{
+			printw("%c", hello_player[counterx]);
+			counterx++;
+		}
+		if (hello_player[counterx] == '\n')
+		{
+			counterx++;
+			countery++;
+		}
+	}
+    attroff(COLOR_PAIR(1));
+
+
+    getch();
 }

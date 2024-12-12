@@ -179,4 +179,5 @@ void stairs(int rows, int cols, char (*map)[cols])
 
 	}
 	while(stairs_place == 0);
+	return;
 }
