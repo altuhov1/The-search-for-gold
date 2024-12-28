@@ -20,7 +20,7 @@ void move_person(int rows, int cols, char (*map)[cols])
 	else if (c == KEY_DOWN) dir_y++;
 	else if (c == KEY_LEFT) dir_x--;
 	else if (c == KEY_RIGHT) dir_x++;
-	else if ((c == '\n')&& (map[py][px] == '^')) move_p = 1; // ((c == '\n')&& (map[py][px] == '^'))
+	else if (c == '\n') move_p = 1; // ((c == '\n')&& (map[py][px] == '^'))
 
 	if (move_p == 1)
 	{
@@ -54,8 +54,8 @@ int delta_time(void)
 /*Проверка на то, сколько будет весеть по времени сообщение */
 /*Пока в завсисмости с функцией индикаторы в drawing.c*/
 {
-    time_t mytime_1 = time_table[0].temp_time;
-    time_t mytime_2 = time(NULL);
+    time_t mytime_1 = time_table.temp_time_gold;
+    time_t mytime_2 = time(NULL) - time_table.start_time;
     int res = (int)mytime_2 - (int)mytime_1;
 	if (res < 3)
 	{
@@ -64,3 +64,18 @@ int delta_time(void)
     return 0;
 }
 
+int basic_update_check(void)
+
+/*КОроче, это тема отвечает за автоматическое обновление слайдов
+(в планах добавить механику перемещения мобов)*/
+{
+    time_t mytime_1 = time_table.basic_automatic_time;
+    time_t mytime_2 = time(NULL) - time_table.start_time;
+    double res = (double)mytime_2 - (double)mytime_1;
+	if (res*res > 1)
+	{
+		return 1;
+		time_table.basic_automatic_time = time(NULL) - time_table.start_time;
+	}
+    return 0;
+}

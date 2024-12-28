@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
+#include <pthread.h>
 #include "global.h"
 // 
 void waiting_tab(int rows, int cols);
@@ -31,10 +32,15 @@ void move_person(int rows, int cols, char (*map)[cols]);
 void indicators(int rows, int cols, char (*map)[cols]);
 /*Drawing.c; Отрисовка всех временных индикаторов*/
 void mode_select(int rows, int cols);
-/*Mode.c; работа с выбором режима для игры*/
+/*Mode_select.c; работа с выбором режима для игры*/
+int basic_update_check(void);
+/*console_work.c; автоматическое обновление слайдов*/
+void rand_move_mod(int rows, int cols, char (*map)[cols]);
+ /* game_mechanics.c; Маханика двжижения мобов */
+
 
 void dungeon(int rows, int cols, char (*map)[cols])
-/*Создаем данжен*/
+/*Создаем дальше и дальше реализовывем главные механики*/
 { 
 	srand(time(NULL)); 
 	if (r_placed == 0)
@@ -45,7 +51,7 @@ void dungeon(int rows, int cols, char (*map)[cols])
 		respawn(rows, cols, map); //спавн перса и мобов
 	}
 
-
+	
 	move_person(rows, cols, map); // чтение хода
 
 	indicators(rows, cols, map);
@@ -55,7 +61,9 @@ void dungeon(int rows, int cols, char (*map)[cols])
 
 int main(void)
 {
-	time_table[0].start_time = time(NULL);
+	time_table.start_time = time(NULL);
+	time_table.basic_automatic_time = time(NULL) - time_table.start_time;
+
     int cols, rows;
     initscr();
 	start_color();
@@ -72,7 +80,7 @@ int main(void)
         dungeon(rows, cols, map); 
 
     }
-    while ((c = getch()) != 27);
+    while (((c = getch()) != 27)); //(basic_update_check() == 1)||
 
     getch();
     endwin();

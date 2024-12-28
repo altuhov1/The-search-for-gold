@@ -50,7 +50,7 @@ void waiting_tab(int rows, int cols)
 			countery++;
 		}
 	}
-	mvprintw(countery+((rows/9)*3) + 2, ((cols/9)*3) + 12,"Press something to continue...");
+	mvprintw(countery+((rows/9)*3) + 2, ((cols/11)*3) + 12,"Press something to continue...");
 }
 
 void drawing(int rows, int cols, char (*map)[cols])
@@ -175,7 +175,7 @@ void start_menu(int rows, int cols)
 	init_pair(3, 238, 238); // фон база
     char hello_player[] =
     {
-    "  . .       . .       .         .         . .          . .       .         . .       .   .    . .       . .\n\
+"   . .       . .       .         .         . .          . .       .         . .       .   .    . .       . .\n\
 .+'| |`+. .+'|=|`+. .+'|      .+'|      .+'|=|`+.    .+'|=|`+. .+'|      .+'|=|`+. .+'|.+'| .+'|=|`+. .+'|=|`+.\n\
 |  | |  | |  | `+.| |  |      |  |      |  | |  |    |  | |  | |  |      |  | |  | |  ||  | |  | `+.| |  | |  | \n\
 |  |=|  | |  |=|`.  |  |      |  |      |  | |  |    |  |=`++' |  |      |  |=|  | `+.`'.+' |  |=|`.  |  |'. '. \n\

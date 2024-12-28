@@ -18,8 +18,10 @@ struct monsters
 struct time_table
 {
 	int start_time;
-	int temp_time;
+	int temp_time_gold;
+	double basic_automatic_time;
+	double creep_delta;
 };
 
 struct monsters monster[10];
-struct time_table time_table[1];
+struct time_table time_table;

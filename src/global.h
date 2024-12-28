@@ -19,9 +19,12 @@
     struct time_table
     {
 	int start_time;
-	int temp_time;
+	int temp_time_gold;
+    double basic_automatic_time;
+    double creep_delta;
+
     };
     extern struct monsters monster[];
-    extern struct time_table time_table[];
+    extern struct time_table time_table;
 
 #endif
