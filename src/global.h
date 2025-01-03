@@ -27,4 +27,6 @@
     extern struct monsters monster[];
     extern struct time_table time_table;
 
+    extern int test; 
+
 #endif

@@ -53,7 +53,7 @@ void waiting_tab(int rows, int cols)
 	mvprintw(countery+((rows/9)*3) + 2, ((cols/11)*3) + 12,"Press something to continue...");
 }
 
-void drawing(int rows, int cols, char (*map)[cols])
+void drawing(int rows, int cols, char **map)
 /*Отрисовка всех текстурок*/
 {
 	init_pair(1, 244, 244); // стены #
@@ -158,7 +158,7 @@ void drawing(int rows, int cols, char (*map)[cols])
 	attroff(COLOR_PAIR(4));
 }
 
-void indicators(int rows, int cols, char (*map)[cols])
+void indicators(int rows, int cols, char **map)
 /*Ссылается на main.c. Занимается отрисовкой разных знаяений (по типу золота и тд)*/
 {
 	if (delta_time() == 1)

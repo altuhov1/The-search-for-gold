@@ -3,25 +3,27 @@
 #include <time.h>
 #include "global.h"
 
+void dungeon(int rows, int cols, char **map); // temp
+
+
 void waiting_tab(int rows, int cols);
 /*drawing.c*/
-void battle(int rows, int cols, char (*map)[cols], int dir_y, int dir_x);
+void battle(int rows, int cols, char **map, int dir_y, int dir_x);
 /*game_mechanics.c*/
-void drawing(int rows, int cols, char (*map)[cols]);
+void drawing(int rows, int cols, char **map);
 /*drawing.c*/
-void move_person(int rows, int cols, char (*map)[cols])
+void move_person(int rows, int cols, char **map)
 /*Чтение ходов*/
 {
 	int dir_y = py, dir_x = px;
 	bool move_p = 0;
 	bool check_teleport =0;
 
-	if (c == KEY_UP) dir_y--;
-	else if (c == KEY_DOWN) dir_y++;
-	else if (c == KEY_LEFT) dir_x--;
-	else if (c == KEY_RIGHT) dir_x++;
-	else if (c == '\n') move_p = 1; // ((c == '\n')&& (map[py][px] == '^'))
-
+	if (c == KEY_UP)  dir_y--;
+	else if (c == KEY_DOWN)  dir_y++;
+	else if (c == KEY_LEFT)  dir_x--;
+	else if (c == KEY_RIGHT)  dir_x++;
+	else if ((c == '\n')&& (map[py][px] == '^')) move_p = 1; // ((c == '\n')&& (map[py][px] == '^'))
 	if (move_p == 1)
 	{
 		p_placed = 0;
@@ -29,8 +31,9 @@ void move_person(int rows, int cols, char (*map)[cols])
 		r_placed = 0;
 		t_placed = 0;
 		c = 0;
-		waiting_tab(rows, cols);
 		check_teleport = 1;
+		dungeon(rows, cols, map);
+		// waiting_tab(rows, cols);
 	}
 	else if (map[dir_y][dir_x] == ' ')
 	{
@@ -66,7 +69,7 @@ int delta_time(void)
 
 int basic_update_check(void)
 
-/*КОроче, это тема отвечает за автоматическое обновление слайдов
+/* КОроче, это тема отвечает за автоматическое обновление слайдов
 (в планах добавить механику перемещения мобов)*/
 {
     time_t mytime_1 = time_table.basic_automatic_time;

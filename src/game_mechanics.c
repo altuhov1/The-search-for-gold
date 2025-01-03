@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include "global.h"
 
-void battle(int rows, int cols, char (*map)[cols], int dir_y, int dir_x)
+void battle(int rows, int cols, char **map, int dir_y, int dir_x)
 {    /* Маханика битвы с мобом */
 	for (int m = 0; m<10; m++)
 	{
@@ -24,7 +24,7 @@ void battle(int rows, int cols, char (*map)[cols], int dir_y, int dir_x)
 	}
 
 }
-void rand_move_mod(int rows, int cols, char (*map)[cols])
+void rand_move_mod(int rows, int cols, char **map)
 {    /* Маханика двжижения мобов */
 	for (int x = 0; x < cols; x++)
 	{

@@ -1,14 +1,14 @@
 #include <stdbool.h>
 
-int px; 
-int py;
-int c = 0;
-int p_gold = 0;
-int temp_gold = 0;
-bool t_placed = 0;
-bool p_placed = 0;
-bool stairs_place = 0;
-int r_placed = 0;
+int px; // координаты персонажа по x 
+int py; // координаты персонажа по y
+int c = 0; // симвл,  который считывается с стандартного потока 
+int p_gold = 0; // общее число золота у персонажа
+int temp_gold = 0; // золото, которое было добыто за полседние 3 секнуды
+bool t_placed = 0; // мобы
+bool p_placed = 0; // персонаж
+bool stairs_place = 0; // телепорт
+int r_placed = 0; // комнаты
 struct monsters
 {
 	int y;
@@ -23,5 +23,7 @@ struct time_table
 	double creep_delta;
 };
 
-struct monsters monster[10];
-struct time_table time_table;
+struct monsters monster[10]; // все мобы
+struct time_table time_table; // тип массива лоя работы с врменем и тд
+
+int test = 0; // переменная для проверок

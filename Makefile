@@ -8,7 +8,7 @@ SRC = $(wildcard $(PREF_SRC)*.c)
 OBJ = $(patsubst $(PREF_SRC)%.c, $(PREF_OBJ)%.o, $(SRC))
 
 $(TARGET) : $(OBJ)
-	$(CC) $(OBJ) -lncurses -o $(TARGET)
+	$(CC) -g -O1 -fsanitize=address $(OBJ) -lncurses -o $(TARGET)
 
 $(PREF_OBJ)%.o : $(PREF_SRC)%.c
 	$(CC) -c $< -o $@
