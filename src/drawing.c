@@ -1,5 +1,6 @@
 #include <ncurses.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <time.h>
 #include "global.h"
 
@@ -51,6 +52,15 @@ void waiting_tab(int rows, int cols)
 		}
 	}
 	mvprintw(countery+((rows/9)*3) + 2, ((cols/11)*3) + 12,"Press something to continue...");
+	mvprintw(countery+((rows/9)*3) + 4, ((cols/11)*3) + 13,"[");
+	mvprintw(countery+((rows/9)*3) + 4, ((cols/11)*3) + 36,"]");
+	
+	for (long int i = 1; i < 23; i++)
+	{
+		mvprintw(countery+((rows/9)*3) + 4 , ((cols/11)*3) + 13 + i,"#");
+		refresh();
+		napms(130);
+	}
 }
 
 void drawing(int rows, int cols, char **map)

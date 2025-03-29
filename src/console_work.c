@@ -32,6 +32,7 @@ void move_person(int rows, int cols, char **map)
 		t_placed = 0;
 		c = 0;
 		check_teleport = 1;
+		waiting_tab(rows, cols);
 		dungeon(rows, cols, map);
 		// waiting_tab(rows, cols);
 	}
