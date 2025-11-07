@@ -28,5 +28,8 @@ git clone git@github.com:altuhov1/game_2d.git
 # Перейти в папку
 cd game_2d
 
-# Собрать (требуется gcc и ncurses) и запустить
-make run
+# Собрать (требуется gcc и ncurses)
+make
+
+# Запустить
+./dungeon
